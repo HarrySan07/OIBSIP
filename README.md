@@ -1,174 +1,137 @@
-<div align="center">
+# OIBSIP — Web Development & Designing
 
-# ◉ THE INNER ATLAS
+<p align="center">
+  <img src="https://img.shields.io/badge/Oasis%20Infobyte-Internship-111111?style=for-the-badge" alt="Oasis Infobyte Internship">
+  <img src="https://img.shields.io/badge/Track-Web%20Development%20%26%20Designing-444444?style=for-the-badge" alt="Web Development and Designing">
+  <img src="https://img.shields.io/badge/Level-1-666666?style=for-the-badge" alt="Level 1">
+</p>
 
-### Psychology · Philosophy · The Human Condition
-
-_A journey into the mind, identity, perception, and the nature of existence._
-
-<br>
-
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Responsive Design](https://img.shields.io/badge/Responsive_Design-181818?style=for-the-badge&logo=googlechrome&logoColor=white)
-
-<br>
-
-**A monochrome editorial experience exploring the deeper questions of being human.**
-
-</div>
+<h1 align="center">OIBSIP Project Hub</h1>
+<p align="center">A central archive of web development projects completed during my Oasis Infobyte internship.</p>
+<p align="center"><a href="https://harrysan07.github.io/OIBSIP/">Open Project Hub</a> · <a href="https://github.com/HarrySan07/OIBSIP">View Repository</a></p>
 
 ---
 
-## 🕯️ About the Project
+## About this repository
 
-**THE INNER ATLAS** is a psychology and philosophy-themed landing page created to explore the complexities of human thought, identity, beliefs, and existence.
+This repository contains the projects developed as part of the **Oasis Infobyte Web Development & Designing Internship — Level 1**.
 
-Inspired by monochrome Gothic editorial design and psychological surrealism, the website combines expressive typography, atmospheric imagery, minimalist layouts, and interactive reflection.
+It is organized as a project hub. Each task has its own directory, source files, documentation, and (when completed) a live website accessible from the hub. Project status and links will be updated as each task is completed and deployed.
 
-Rather than simply presenting information, the experience invites visitors to pause, question their assumptions, and examine the relationship between their minds and reality.
+## Internship tasks
 
-## 🧠 Key Features
+### Task 1 — Landing Page: THE INNER ATLAS
 
-- ◉ **Monochrome Gothic Aesthetic** — A dark, editorial visual identity with silver accents and expressive serif typography.
-- 🪞 **Psychological Surrealism** — Conceptual imagery exploring identity, perception, and the human mind.
-- 🧩 **Exploration Index** — Five thematic concepts examining different dimensions of human nature.
-- ⚖️ **Psychology vs. Philosophy** — Two perspectives on understanding human behaviour and existence.
-- 💭 **Mirror of Belief** — An interactive reflection exercise that responds to different approaches to beliefs and evidence.
-- 🧭 **Section Navigation** — Convenient navigation between the website's main sections.
-- 📱 **Responsive Styling** — Layout adjustments for desktop, tablet, and mobile screens.
-- ♿ **Accessibility Considerations** — Semantic HTML, keyboard navigation, visible focus indicators, and reduced-motion support.
+**Status: Completed**
 
-## 🗂️ Project Structure
+A monochrome, Gothic-inspired editorial landing page exploring psychology, philosophy, identity, perception, and human nature. It combines expressive typography, conceptual imagery, structured content sections, and an interactive reflection exercise.
+
+- **Live website:** [Open THE INNER ATLAS](https://harrysan07.github.io/OIBSIP/Task-1-Landing-Page/)
+- **Project folder:** [`Task-1-Landing-Page/`](./Task-1-Landing-Page/)
+- **Task documentation:** [`Task-1-Landing-Page/README.md`](./Task-1-Landing-Page/README.md)
+
+**Key features**
+
+- Monochrome Gothic editorial visual direction.
+- Responsive page structure and navigation.
+- Psychology- and philosophy-themed content.
+- Conceptual image sections.
+- Interactive “Mirror of Belief” reflection exercise.
+
+**Technologies:** HTML5, CSS3, JavaScript.
+
+### Task 2 — Portfolio
+
+**Status: Coming Soon**
+
+A personal portfolio website to present profile information, technical skills, selected projects, internship experience, and contact links.
+
+- **Project folder:** `Task-2-Portfolio/`
+- **Live website:** To be added after implementation and deployment.
+
+**Planned technologies:** HTML5, CSS3, JavaScript.
+
+### Task 3 — Temperature Converter
+
+**Status: Coming Soon**
+
+A temperature conversion web application. Its final documentation will describe supported units, input validation, and interface features after implementation.
+
+- **Project folder:** `Task-3-Temperature-Converter/`
+- **Live website:** To be added after implementation and deployment.
+
+**Planned technologies:** HTML5, CSS3, JavaScript.
+
+---
+
+## Repository structure
 
 ```text
-WebDev-L1-HumanCondition/
-│
+OIBSIP/
 ├── index.html
-├── style.css
-├── script.js
 ├── README.md
-│
-├── assets/
-│   ├── icons/
-│   │   └── favicon.svg
-│   │
-│   └── images/
-│       ├── hero-self-reflection.webp
-│       ├── identity-and-self.webp
-│       ├── minds-illusions.webp
-│       ├── individual-and-crowd.webp
-│       ├── morality-and-mind.webp
-│       └── meaning-and-existence.webp
-│
-└── screenshots/
+├── Task-1-Landing-Page/
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   ├── README.md
+│   └── assets/
+│       ├── icons/
+│       └── images/
+├── Task-2-Portfolio/                 # added when Task 2 begins
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   └── README.md
+└── Task-3-Temperature-Converter/     # added when Task 3 begins
+    ├── index.html
+    ├── style.css
+    ├── script.js
+    └── README.md
 ```
 
-## 🛠️ Built With
+Screenshots and any additional assets will be stored inside the relevant task directory.
 
-| Technology      | Purpose                                                    |
-| --------------- | ---------------------------------------------------------- |
-| 🌐 HTML5        | Page structure and semantic content                        |
-| 🎨 CSS3         | Layout, typography, visual effects, and responsive styling |
-| ⚡ JavaScript   | Interactive reflection exercise and mobile navigation      |
-| 🖼️ WebP / SVG   | Optimized imagery and vector icon                          |
-| 🔤 Google Fonts | Cormorant Garamond, DM Sans, and Space Grotesk             |
+## Opening the project hub
 
-## 🚀 Getting Started
+Visit **[https://harrysan07.github.io/OIBSIP/](https://harrysan07.github.io/OIBSIP/)**.
 
-### Prerequisites
+The hub provides access to each published task. A task link will be enabled after its website has been added to the repository and deployed.
 
-- A modern web browser
-- [Visual Studio Code](https://code.visualstudio.com/)
-- The Live Server extension for VS Code (recommended)
+## Running a task locally
 
-### Installation
+1. Clone the repository:
 
-**1. Clone the repository**
+   ```bash
+   git clone https://github.com/HarrySan07/OIBSIP.git
+   ```
 
-Replace the placeholder URL below with the actual URL of your project repository.
+2. Open the required task directory.
+3. Open that directory's `index.html` in a browser, or use the VS Code Live Server extension.
 
-```bash
-git clone YOUR-REPOSITORY-URL
-```
+These projects use plain HTML, CSS, and JavaScript and do not require a build process unless a task's own documentation specifies otherwise.
 
-**2. Open the project folder**
+## Task-level documentation
 
-```bash
-cd WebDev-L1-HumanCondition
-```
+Each task directory will contain its own `README.md` describing its objective, features, technologies, setup instructions, screenshots, and live demo link.
 
-**3. Launch the website**
+## Internship information
 
-Open the folder in Visual Studio Code, right-click `index.html`, and select **Open with Live Server**.
+| Detail         | Information                 |
+| -------------- | --------------------------- |
+| Organization   | Oasis Infobyte              |
+| Track          | Web Development & Designing |
+| Level          | Level 1                     |
+| Repository     | OIBSIP                      |
+| Completed task | Task 1 — Landing Page       |
 
-Alternatively, open `index.html` directly in your browser.
+## Author
 
-## 🪞 Explore the Experience
+**Hari Prasath P**
 
-The website is organized around several interconnected themes:
-
-| Section                  | Exploration                                           |
-| ------------------------ | ----------------------------------------------------- |
-| 🧠 The Mind              | An exploration of human thought and perception        |
-| 🪞 Identity and Self     | Questions about identity and self-understanding       |
-| 🌫️ Illusions of the Mind | How perception can shape our understanding of reality |
-| 👥 Individual and Crowd  | The relationship between individuality and society    |
-| ⚖️ Morality and Mind     | Questions about moral judgement and human behaviour   |
-| ∞ Meaning and Existence  | Reflections on purpose, meaning, and existence        |
-
-## 🎯 Project Objective
-
-This project was developed as a web development learning exercise, focusing on:
-
-- Building a structured landing page with HTML5
-- Creating a distinctive visual identity using CSS3
-- Implementing interactive features with JavaScript
-- Applying responsive layout techniques
-- Practising semantic markup and basic accessibility
-- Organizing project assets and preparing a GitHub-ready codebase
-
-### Internship Context
-
-**Program:** Oasis Infobyte — Web Development and Designing
-
-**Level:** Level 1
-
-**Project:** Landing Page — THE INNER ATLAS
-
-## 📬 Connect With Me
-
-<div align="center">
-
-### Hari Prasath P
-
-[![Email](https://img.shields.io/badge/Email-sit24me031%40sairamtap.edu.in-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sit24me031@sairamtap.edu.in)
-
-[![GitHub](https://img.shields.io/badge/GitHub-Hari13181-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Harry13181)
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Hari_Prasath_P-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/hari-prasath-p-bb4b11404)
-
-</div>
-
-## 📄 License
-
-This project was created for educational and portfolio purposes.
-
-If you plan to reuse or redistribute its assets, verify the applicable licences and permissions first.
+- GitHub: [Harry13181](https://github.com/Harry13181)
+- LinkedIn: [Hari Prasath P](https://linkedin.com/in/hari-prasath-p-bb4b11404)
 
 ---
 
-<div align="center">
-
-**“Know thyself.”**
-
-_Look inward. Question everything. Understand the human condition._
-
-<br>
-
-Made with 🖤 and curiosity.
-
-**THE INNER ATLAS · 2026**
-
-</div>
+<p align="center"><em>Built as part of the Oasis Infobyte Web Development & Designing Internship.</em></p>
