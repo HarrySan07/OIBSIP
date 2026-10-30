@@ -40,16 +40,46 @@ A monochrome, Gothic-inspired editorial landing page exploring psychology, philo
 
 **Technologies:** HTML5, CSS3, JavaScript.
 
-### Task 2 — Portfolio
+### Task 2 — Personal Portfolio Website
 
-**Status: Coming Soon**
+**Project: PERSONAL PORTFOLIO**
 
-A personal portfolio website to present profile information, technical skills, selected projects, internship experience, and contact links.
+**Status: Completed — Refinement in Progress**
 
-- **Project folder:** `Task-2-Portfolio/`
-- **Live website:** To be added after implementation and deployment.
+A personal portfolio website designed to showcase my technical skills, engineering background, projects, internship experience, and professional profile.
 
-**Planned technologies:** HTML5, CSS3, JavaScript.
+The portfolio brings together my academic journey, technical interests, software skills, and development work in one place.
+
+**Live Website:** [Visit My Portfolio](https://harry13181.github.io/Portfolio/)
+
+**Source Code:** [Task-2-Portfolio](./Task-2-Portfolio/)
+
+**Key Sections**
+
+- Personal introduction and profile.
+- Technical skills and software proficiency.
+- Mechanical engineering knowledge and interests.
+- Internship and practical experience.
+- Projects and development work.
+- Education and certifications.
+- Contact information and professional links.
+
+**Technologies:** HTML5, CSS3, JavaScript.
+
+**Key Skills Showcased**
+
+- SOLIDWORKS
+- AutoCAD / Autodesk
+- Engineering Drawing
+- Manufacturing Processes
+- C Programming
+- Python Basics
+- Git and GitHub
+
+**Objective**
+
+To create a professional online presence that presents my technical capabilities,
+academic background, practical experience, and development projects.
 
 ### Task 3 — Temperature Converter
 
@@ -78,11 +108,9 @@ OIBSIP/
 │   └── assets/
 │       ├── icons/
 │       └── images/
-├── Task-2-Portfolio/                 # added when Task 2 begins
+├── ├── Task-2-Portfolio/
 │   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│   └── README.md
+│   ├── README.md
 └── Task-3-Temperature-Converter/     # added when Task 3 begins
     ├── index.html
     ├── style.css
