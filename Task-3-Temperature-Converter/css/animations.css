@@ -1,0 +1,406 @@
+/* TEMPORA — motion and atmosphere layer
+   Dynamic Gothic Liquid Glass animations. Core layout and component styling live in style.css. */
+
+:root {
+  --motion-fast: 180ms;
+  --motion-standard: 420ms;
+  --motion-slow: 900ms;
+  --motion-ease: cubic-bezier(0.2, 0.72, 0.18, 1);
+}
+
+/* Ambient background: restrained movement keeps the interface alive without distraction. */
+.ambient-scene__orb {
+  will-change: transform, opacity;
+  animation: ambient-drift 28s ease-in-out infinite alternate;
+}
+
+.ambient-scene__orb--two {
+  animation-duration: 34s;
+  animation-delay: -9s;
+}
+
+.ambient-scene__grain {
+  animation: grain-breathe 8s steps(5, end) infinite;
+}
+
+@keyframes ambient-drift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(0.96);
+    opacity: 0.11;
+  }
+  50% {
+    transform: translate3d(3%, 2%, 0) scale(1.06);
+    opacity: 0.19;
+  }
+  100% {
+    transform: translate3d(-1%, 4%, 0) scale(1.02);
+    opacity: 0.14;
+  }
+}
+
+@keyframes grain-breathe {
+  0%, 100% { opacity: 0.055; }
+  50% { opacity: 0.085; }
+}
+
+/* View transitions. The hidden attribute remains authoritative for inactive views. */
+.view--active:not([hidden]) {
+  animation: view-arrive 520ms var(--motion-ease) both;
+}
+
+@keyframes view-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Soft specular pass across the primary glass surfaces. */
+.topbar,
+.input-panel,
+.results-panel,
+.compare-panel,
+.history-panel,
+.settings-dialog {
+  position: relative;
+  overflow: hidden;
+}
+
+.topbar::after,
+.input-panel::after,
+.results-panel::after,
+.compare-panel::after,
+.history-panel::after,
+.settings-dialog::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    112deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.035) 32%,
+    rgba(183, 218, 239, 0.07) 40%,
+    transparent 54%
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-48%);
+}
+
+.topbar:hover::after,
+.input-panel:hover::after,
+.results-panel:hover::after,
+.compare-panel:hover::after,
+.history-panel:hover::after {
+  animation: glass-sheen 1.25s var(--motion-ease) both;
+}
+
+@keyframes glass-sheen {
+  0% {
+    opacity: 0;
+    transform: translateX(-48%);
+  }
+  18% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translateX(48%);
+  }
+}
+
+/* The semicircular gauge uses a bottom-up smoke body. JavaScript controls its height;
+   these animations add slow turbulence to the visible smoke layers. */
+.gauge-stage {
+  transition: filter var(--motion-standard) ease;
+}
+
+.gauge-stage::before {
+  transition: background var(--motion-slow) ease, opacity var(--motion-slow) ease;
+  animation: gauge-aura 7s ease-in-out infinite alternate;
+}
+
+.gauge-track {
+  transition: stroke 700ms ease, opacity 700ms ease;
+}
+
+.gauge-progress {
+  transition: stroke-dasharray 700ms var(--motion-ease), filter 700ms ease;
+  animation: gauge-track-glow 5.5s ease-in-out infinite;
+}
+
+.smoke-container {
+  transform-origin: 50% 100%;
+}
+
+.smoke-fill {
+  transition: y 760ms var(--motion-ease), height 760ms var(--motion-ease), opacity 650ms ease;
+}
+
+.smoke-cloud {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+}
+
+.smoke-cloud--one {
+  animation: smoke-rise-left 8.5s ease-in-out infinite;
+}
+
+.smoke-cloud--two {
+  animation: smoke-rise-center 7.2s ease-in-out infinite;
+  animation-delay: -2.4s;
+}
+
+.smoke-cloud--three {
+  animation: smoke-rise-right 9.1s ease-in-out infinite;
+  animation-delay: -4.1s;
+}
+
+.smoke-wave {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: smoke-wave-drift 6.8s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.smoke-wave--front {
+  animation-duration: 5.1s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes smoke-rise-left {
+  0%, 100% {
+    opacity: 0.48;
+    transform: translate3d(-3px, 5px, 0) scale(0.96, 0.86);
+  }
+  50% {
+    opacity: 0.82;
+    transform: translate3d(8px, -9px, 0) scale(1.12, 1.2);
+  }
+}
+
+@keyframes smoke-rise-center {
+  0%, 100% {
+    opacity: 0.58;
+    transform: translate3d(2px, 7px, 0) scale(0.94, 0.88);
+  }
+  55% {
+    opacity: 0.9;
+    transform: translate3d(-5px, -12px, 0) scale(1.1, 1.22);
+  }
+}
+
+@keyframes smoke-rise-right {
+  0%, 100% {
+    opacity: 0.42;
+    transform: translate3d(4px, 4px, 0) scale(0.9, 0.9);
+  }
+  48% {
+    opacity: 0.76;
+    transform: translate3d(-8px, -10px, 0) scale(1.14, 1.18);
+  }
+}
+
+@keyframes smoke-wave-drift {
+  from { transform: translate3d(-5px, 1px, 0) scaleX(1.015); }
+  to { transform: translate3d(6px, -4px, 0) scaleX(0.985); }
+}
+
+@keyframes gauge-aura {
+  from {
+    opacity: 0.52;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes gauge-track-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(136, 204, 233, 0.24)); }
+  50% { filter: drop-shadow(0 0 8px rgba(169, 229, 250, 0.46)); }
+}
+
+/* Temperature regimes gently tint the atmosphere while retaining the dark glass identity. */
+.gauge-stage[data-regime="cold"]::before {
+  background: radial-gradient(ellipse, rgba(77, 166, 211, 0.17), transparent 70%);
+}
+
+.gauge-stage[data-regime="moderate"]::before {
+  background: radial-gradient(ellipse, rgba(147, 170, 191, 0.12), transparent 70%);
+}
+
+.gauge-stage[data-regime="warm"]::before,
+.gauge-stage[data-regime="hot"]::before {
+  background: radial-gradient(ellipse, rgba(190, 113, 83, 0.16), transparent 70%);
+}
+
+.gauge-stage[data-regime="hot"] .gauge-progress {
+  filter: drop-shadow(0 0 9px rgba(239, 181, 143, 0.46));
+}
+
+/* Temperature readout: a small arrival pulse when JavaScript marks a changed value. */
+.gauge-readout.is-updating strong,
+.temperature-result.is-updating .result-value {
+  animation: value-arrive 420ms var(--motion-ease);
+}
+
+@keyframes value-arrive {
+  0% {
+    opacity: 0.58;
+    filter: blur(3px);
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* Interactive controls receive quick, tactile movement. */
+.primary-button,
+.secondary-button,
+.danger-button,
+.icon-button,
+.preset-card,
+.filter-chip,
+.nav-link,
+.history-record__actions button {
+  transition:
+    color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease,
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.primary-button:hover,
+.preset-card:hover,
+.icon-button:hover {
+  transform: translateY(-2px);
+}
+
+.primary-button:active,
+.secondary-button:active,
+.danger-button:active,
+.icon-button:active,
+.preset-card:active,
+.filter-chip:active {
+  transform: translateY(0) scale(0.985);
+}
+
+/* Presets and result panels enter with a restrained stagger when their view appears. */
+.preset-card,
+.result-card,
+.formula-row,
+.history-group {
+  animation: detail-settle 540ms var(--motion-ease) both;
+}
+
+.preset-card:nth-child(2),
+.result-card:nth-child(2),
+.formula-row:nth-child(2) { animation-delay: 55ms; }
+
+.preset-card:nth-child(3),
+.result-card:nth-child(3),
+.formula-row:nth-child(3) { animation-delay: 100ms; }
+
+.preset-card:nth-child(4),
+.formula-row:nth-child(4) { animation-delay: 145ms; }
+
+.preset-card:nth-child(5),
+.formula-row:nth-child(5) { animation-delay: 190ms; }
+
+@keyframes detail-settle {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* History disclosures open cleanly without changing their document order. */
+.history-group__content {
+  transform-origin: top center;
+}
+
+.history-group[open] .history-group__content {
+  animation: history-unfold 280ms var(--motion-ease) both;
+}
+
+@keyframes history-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toasts and dialogs should feel responsive, not abrupt. */
+.toast {
+  animation: toast-arrive 260ms var(--motion-ease) both;
+}
+
+.settings-dialog[open] {
+  animation: dialog-arrive 300ms var(--motion-ease) both;
+}
+
+@keyframes toast-arrive {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes dialog-arrive {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* A user preference or OS setting can remove non-essential movement completely. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .ambient-scene__orb,
+  .ambient-scene__grain,
+  .smoke-cloud,
+  .smoke-wave,
+  .gauge-stage::before {
+    animation: none !important;
+  }
+}
+
+/* The in-app motion control can apply the same preference without changing OS settings. */
+html.motion-reduced *,
+html.motion-reduced *::before,
+html.motion-reduced *::after {
+  scroll-behavior: auto !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+html.motion-reduced .ambient-scene__orb,
+html.motion-reduced .ambient-scene__grain,
+html.motion-reduced .smoke-cloud,
+html.motion-reduced .smoke-wave,
+html.motion-reduced .gauge-stage::before {
+  animation: none !important;
+}

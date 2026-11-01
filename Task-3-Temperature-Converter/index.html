@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08090d" />
+    <meta
+      name="description"
+      content="TEMPORA — a precision temperature conversion experience. Convert, compare, and explore temperatures through a gothic liquid-glass interface."
+    />
+    <meta name="color-scheme" content="dark" />
+    <title>TEMPORA — Precision Temperature Conversion</title>
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <script src="js/converter.js" defer></script>
+    <script src="js/history.js" defer></script>
+    <script src="js/comparison.js" defer></script>
+    <script src="js/sound.js" defer></script>
+    <script src="js/interactions.js" defer></script>
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient-scene" aria-hidden="true">
+      <div class="ambient-scene__veil"></div>
+      <div class="ambient-scene__orb ambient-scene__orb--one"></div>
+      <div class="ambient-scene__orb ambient-scene__orb--two"></div>
+      <div class="ambient-scene__grain"></div>
+    </div>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <div class="app-shell" id="app">
+      <header class="topbar glass-panel" id="topbar">
+        <a class="brand" href="#converter" aria-label="TEMPORA home">
+          <span class="brand__sigil" aria-hidden="true">✧</span>
+          <span class="brand__wordmark">TEMPORA</span>
+          <span class="brand__caption">PRECISION TEMPERATURE SYSTEM</span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <button
+            class="nav-link is-active"
+            type="button"
+            data-view="convert"
+            aria-current="page"
+          >
+            <span class="nav-link__icon" aria-hidden="true">⌂</span
+            ><span>Convert</span>
+          </button>
+          <button class="nav-link" type="button" data-view="compare">
+            <span class="nav-link__icon" aria-hidden="true">⇄</span
+            ><span>Compare</span>
+          </button>
+          <button class="nav-link" type="button" data-view="history">
+            <span class="nav-link__icon" aria-hidden="true">◷</span
+            ><span>History</span>
+          </button>
+        </nav>
+
+        <div class="topbar__actions">
+          <button
+            class="icon-button"
+            id="settings-open"
+            type="button"
+            aria-label="Open settings"
+            aria-haspopup="dialog"
+            aria-controls="settings-dialog"
+            title="Settings"
+          >
+            ⚙
+          </button>
+          <button
+            class="icon-button"
+            id="sound-toggle"
+            type="button"
+            aria-label="Toggle interface sounds"
+            aria-pressed="false"
+            title="Sound off"
+          >
+            ♫
+          </button>
+          <button
+            class="icon-button"
+            id="motion-toggle"
+            type="button"
+            aria-label="Toggle reduced motion"
+            aria-pressed="false"
+            title="Motion settings"
+          >
+            ◐
+          </button>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section
+          class="view view--active"
+          id="view-convert"
+          data-view-panel="convert"
+          aria-labelledby="page-title"
+        >
+          <div class="page-heading">
+            <p class="eyebrow">
+              <span class="eyebrow__line"></span> THE ART OF MEASUREMENT
+              <span class="eyebrow__line"></span>
+            </p>
+            <h1 id="page-title">A different <em>degree</em> of precision.</h1>
+            <p class="page-heading__description">
+              Move between scales. Observe the change. Keep the exact measure.
+            </p>
+          </div>
+
+          <div class="converter-layout">
+            <section
+              class="glass-panel input-panel"
+              aria-labelledby="input-title"
+            >
+              <div class="panel-heading">
+                <div>
+                  <p class="panel-kicker">01 / INPUT</p>
+                  <h2 id="input-title">Temperature source</h2>
+                </div>
+                <span class="panel-mark" aria-hidden="true">✧</span>
+              </div>
+
+              <label class="field-label" for="temperature-input"
+                >Enter a temperature</label
+              >
+              <div class="temperature-field">
+                <input
+                  id="temperature-input"
+                  name="temperature"
+                  type="number"
+                  inputmode="decimal"
+                  step="any"
+                  value="25"
+                  autocomplete="off"
+                  aria-describedby="input-hint input-error"
+                />
+                <label class="visually-hidden" for="input-unit"
+                  >Input temperature unit</label
+                >
+                <select id="input-unit" name="input-unit">
+                  <option value="C" selected>°C</option>
+                  <option value="F">°F</option>
+                  <option value="K">K</option>
+                </select>
+              </div>
+              <p class="field-hint" id="input-hint">
+                Enter a value at or above absolute zero.
+              </p>
+              <p class="field-error" id="input-error" role="alert" hidden></p>
+
+              <div class="slider-block">
+                <div class="slider-block__meta">
+                  <label for="temperature-slider">Fine adjustment</label>
+                  <output id="slider-output" for="temperature-slider"
+                    >25 °C</output
+                  >
+                </div>
+                <input
+                  id="temperature-slider"
+                  class="temperature-slider"
+                  type="range"
+                  min="-273.15"
+                  max="1000"
+                  step="0.01"
+                  value="25"
+                  aria-label="Adjust input temperature"
+                />
+                <div class="slider-block__scale">
+                  <span id="slider-min">−273.15 °C</span
+                  ><span id="slider-max">1000 °C</span>
+                </div>
+              </div>
+
+              <div class="input-panel__footer">
+                <span class="micro-label">SOURCE SCALE</span>
+                <span class="source-unit" id="source-unit-label"
+                  >CELSIUS / °C</span
+                >
+              </div>
+            </section>
+
+            <div class="swap-column">
+              <button
+                class="swap-button glass-control"
+                id="swap-units"
+                type="button"
+                aria-label="Swap input and output units"
+                title="Swap units"
+              >
+                <span aria-hidden="true">⇄</span>
+              </button>
+              <span class="swap-caption">SWAP</span>
+            </div>
+
+            <section
+              class="glass-panel results-panel"
+              aria-labelledby="results-title"
+              aria-live="polite"
+            >
+              <div class="panel-heading">
+                <div>
+                  <p class="panel-kicker">02 / OUTPUT</p>
+                  <h2 id="results-title">Converted measures</h2>
+                </div>
+                <span class="live-indicator"><span></span> LIVE</span>
+              </div>
+
+              <div class="result-grid">
+                <article
+                  class="result-card result-card--fahrenheit"
+                  data-result-card="F"
+                >
+                  <div class="result-card__top">
+                    <span class="result-card__symbol" aria-hidden="true">♨</span
+                    ><span class="result-card__unit">FAHRENHEIT</span>
+                  </div>
+                  <p class="result-card__value" id="fahrenheit-result">
+                    77.00 <span>°F</span>
+                  </p>
+                  <button
+                    class="copy-button"
+                    type="button"
+                    data-copy-result="F"
+                    aria-label="Copy Fahrenheit result"
+                  >
+                    Copy
+                  </button>
+                </article>
+                <article
+                  class="result-card result-card--kelvin"
+                  data-result-card="K"
+                >
+                  <div class="result-card__top">
+                    <span class="result-card__symbol" aria-hidden="true">◇</span
+                    ><span class="result-card__unit">KELVIN</span>
+                  </div>
+                  <p class="result-card__value" id="kelvin-result">
+                    298.15 <span>K</span>
+                  </p>
+                  <button
+                    class="copy-button"
+                    type="button"
+                    data-copy-result="K"
+                    aria-label="Copy Kelvin result"
+                  >
+                    Copy
+                  </button>
+                </article>
+              </div>
+
+              <div class="result-toolbar">
+                <label for="precision-select">DECIMAL PRECISION</label>
+                <select id="precision-select" name="precision">
+                  <option value="0">0 places</option>
+                  <option value="1">1 place</option>
+                  <option value="2" selected>2 places</option>
+                  <option value="3">3 places</option>
+                  <option value="4">4 places</option>
+                  <option value="6">6 places</option>
+                </select>
+                <button class="text-button" id="copy-all-results" type="button">
+                  Copy all ↗
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <section class="gauge-section" aria-labelledby="gauge-title">
+            <div class="gauge-heading">
+              <p class="panel-kicker">03 / ATMOSPHERIC READING</p>
+              <h2 id="gauge-title">Feel the temperature.</h2>
+            </div>
+            <div
+              class="gauge-stage"
+              id="temperature-gauge"
+              data-regime="moderate"
+            >
+              <svg
+                class="gauge-svg"
+                viewBox="0 0 520 310"
+                role="img"
+                aria-labelledby="gauge-svg-title gauge-svg-desc"
+              >
+                <title id="gauge-svg-title">
+                  Adaptive semicircular temperature gauge
+                </title>
+                <desc id="gauge-svg-desc">
+                  A semicircular gauge with a bottom-up animated smoke fill
+                  showing the relative temperature range.
+                </desc>
+                <defs>
+                  <linearGradient
+                    id="gauge-track-gradient"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="0"
+                  >
+                    <stop offset="0" stop-color="#6edbff" />
+                    <stop offset="0.52" stop-color="#c7cbd4" />
+                    <stop offset="1" stop-color="#f0a17d" />
+                  </linearGradient>
+                  <linearGradient
+                    id="smoke-fill-gradient"
+                    x1="0"
+                    y1="1"
+                    x2="0"
+                    y2="0"
+                  >
+                    <stop offset="0" stop-color="#050609" stop-opacity="0.98" />
+                    <stop
+                      offset="0.55"
+                      stop-color="#12151b"
+                      stop-opacity="0.88"
+                    />
+                    <stop offset="1" stop-color="#8a929f" stop-opacity="0.08" />
+                  </linearGradient>
+                  <clipPath id="gauge-interior-clip">
+                    <path d="M 55 275 A 205 205 0 0 1 465 275 L 55 275 Z" />
+                  </clipPath>
+                  <filter
+                    id="smoke-blur"
+                    x="-30%"
+                    y="-30%"
+                    width="160%"
+                    height="160%"
+                  >
+                    <feGaussianBlur stdDeviation="10" />
+                  </filter>
+                </defs>
+                <path
+                  class="gauge-track"
+                  d="M 55 275 A 205 205 0 0 1 465 275"
+                  pathLength="100"
+                />
+                <path
+                  class="gauge-progress"
+                  id="gauge-progress"
+                  d="M 55 275 A 205 205 0 0 1 465 275"
+                  pathLength="100"
+                />
+                <g
+                  clip-path="url(#gauge-interior-clip)"
+                  class="smoke-container"
+                  id="smoke-container"
+                >
+                  <rect
+                    class="smoke-fill"
+                    id="smoke-fill"
+                    x="45"
+                    y="275"
+                    width="430"
+                    height="0"
+                    fill="url(#smoke-fill-gradient)"
+                  />
+                  <g
+                    class="smoke-clouds"
+                    id="smoke-clouds"
+                    filter="url(#smoke-blur)"
+                  >
+                    <ellipse
+                      class="smoke-cloud smoke-cloud--one"
+                      cx="150"
+                      cy="270"
+                      rx="72"
+                      ry="25"
+                    />
+                    <ellipse
+                      class="smoke-cloud smoke-cloud--two"
+                      cx="270"
+                      cy="270"
+                      rx="90"
+                      ry="30"
+                    />
+                    <ellipse
+                      class="smoke-cloud smoke-cloud--three"
+                      cx="380"
+                      cy="270"
+                      rx="70"
+                      ry="24"
+                    />
+                  </g>
+                  <path
+                    class="smoke-wave smoke-wave--back"
+                    id="smoke-wave-back"
+                    d="M 45 275 Q 110 250 175 270 T 305 265 T 475 272 L 475 310 L 45 310 Z"
+                  />
+                  <path
+                    class="smoke-wave smoke-wave--front"
+                    id="smoke-wave-front"
+                    d="M 45 275 Q 115 265 180 275 T 310 270 T 475 275 L 475 310 L 45 310 Z"
+                  />
+                </g>
+                <path
+                  class="gauge-inner-edge"
+                  d="M 68 275 A 192 192 0 0 1 452 275"
+                />
+                <circle class="gauge-center-point" cx="260" cy="275" r="3" />
+              </svg>
+              <div class="gauge-readout" aria-live="polite">
+                <span class="gauge-readout__eyebrow" id="gauge-unit-label"
+                  >CELSIUS</span
+                >
+                <strong id="gauge-temperature">25.00°</strong>
+                <span class="gauge-readout__condition" id="gauge-condition"
+                  >MODERATE</span
+                >
+                <span class="gauge-readout__note" id="gauge-note"
+                  >A comfortable, room-like temperature.</span
+                >
+              </div>
+            </div>
+            <div class="gauge-scale">
+              <span>ABSOLUTE ZERO</span><span>THERMAL RANGE</span
+              ><span>EXTREME HEAT</span>
+            </div>
+          </section>
+
+          <div class="lower-grid">
+            <section
+              class="glass-panel presets-panel"
+              aria-labelledby="presets-title"
+            >
+              <div class="panel-heading panel-heading--compact">
+                <div>
+                  <p class="panel-kicker">04 / REFERENCE POINTS</p>
+                  <h2 id="presets-title">Quick presets</h2>
+                </div>
+                <span class="panel-mark" aria-hidden="true">⌁</span>
+              </div>
+              <div class="preset-grid" id="preset-grid">
+                <button
+                  class="preset-card"
+                  type="button"
+                  data-preset="freezing"
+                  data-celsius="0"
+                >
+                  <span aria-hidden="true">❄</span><strong>Freezing</strong
+                  ><small>0 °C</small>
+                </button>
+                <button
+                  class="preset-card is-selected"
+                  type="button"
+                  data-preset="room"
+                  data-celsius="25"
+                >
+                  <span aria-hidden="true">⌂</span><strong>Room</strong
+                  ><small>25 °C</small>
+                </button>
+                <button
+                  class="preset-card"
+                  type="button"
+                  data-preset="boiling"
+                  data-celsius="100"
+                >
+                  <span aria-hidden="true">♨</span><strong>Boiling</strong
+                  ><small>100 °C</small>
+                </button>
+                <button
+                  class="preset-card"
+                  type="button"
+                  data-preset="body"
+                  data-celsius="37"
+                >
+                  <span aria-hidden="true">♙</span><strong>Body</strong
+                  ><small>37 °C</small>
+                </button>
+                <button
+                  class="preset-card"
+                  type="button"
+                  data-preset="hot-day"
+                  data-celsius="40"
+                >
+                  <span aria-hidden="true">☼</span><strong>Hot day</strong
+                  ><small>40 °C</small>
+                </button>
+              </div>
+            </section>
+
+            <section
+              class="glass-panel formula-panel"
+              aria-labelledby="formula-title"
+            >
+              <div class="panel-heading panel-heading--compact">
+                <div>
+                  <p class="panel-kicker">05 / THE MATHEMATICS</p>
+                  <h2 id="formula-title">Conversion formula</h2>
+                </div>
+                <span class="panel-mark" aria-hidden="true">∑</span>
+              </div>
+              <div class="formula-list" id="formula-list">
+                <p class="formula-row">
+                  <span>°C → °F</span><code>F = (C × 9/5) + 32</code>
+                </p>
+                <p class="formula-row">
+                  <span>°C → K</span><code>K = C + 273.15</code>
+                </p>
+              </div>
+              <p class="formula-footnote">
+                Exact relationships. Rounded for display only.
+              </p>
+            </section>
+          </div>
+        </section>
+
+        <section
+          class="view"
+          id="view-compare"
+          data-view-panel="compare"
+          aria-labelledby="compare-title"
+          hidden
+        >
+          <div class="page-heading page-heading--compact">
+            <p class="eyebrow">
+              <span class="eyebrow__line"></span> SIDE BY SIDE
+              <span class="eyebrow__line"></span>
+            </p>
+            <h1 id="compare-title">Compare <em>perspectives.</em></h1>
+            <p class="page-heading__description">
+              Keep multiple temperatures in one clear frame.
+            </p>
+          </div>
+          <section
+            class="glass-panel compare-panel"
+            aria-labelledby="compare-panel-title"
+          >
+            <div class="panel-heading">
+              <div>
+                <p class="panel-kicker">06 / COMPARISON TABLE</p>
+                <h2 id="compare-panel-title">Temperature comparison</h2>
+              </div>
+              <button class="primary-button" id="comparison-add" type="button">
+                ＋ Add entry
+              </button>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Input</th>
+                    <th scope="col">Scale</th>
+                    <th scope="col">Celsius</th>
+                    <th scope="col">Fahrenheit</th>
+                    <th scope="col">Kelvin</th>
+                    <th scope="col">
+                      <span class="visually-hidden">Actions</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="comparison-body"></tbody>
+              </table>
+            </div>
+            <p class="empty-state" id="comparison-empty">
+              No comparison entries yet. Add a temperature to begin.
+            </p>
+          </section>
+        </section>
+
+        <section
+          class="view"
+          id="view-history"
+          data-view-panel="history"
+          aria-labelledby="history-title"
+          hidden
+        >
+          <div class="page-heading page-heading--compact">
+            <p class="eyebrow">
+              <span class="eyebrow__line"></span> YOUR MEASUREMENTS
+              <span class="eyebrow__line"></span>
+            </p>
+            <h1>History of <em>change.</em></h1>
+            <p class="page-heading__description">
+              A living record, organised by day, week, month and year.
+            </p>
+          </div>
+          <section
+            class="glass-panel history-panel"
+            aria-labelledby="history-title"
+          >
+            <div class="panel-heading">
+              <div>
+                <p class="panel-kicker">07 / ARCHIVE</p>
+                <h2 id="history-title">Conversion history</h2>
+                <p class="history-total" id="history-total">
+                  0 conversions recorded
+                </p>
+              </div>
+              <div class="history-actions">
+                <button
+                  class="secondary-button"
+                  id="history-export"
+                  type="button"
+                >
+                  Export CSV</button
+                ><button class="danger-button" id="history-clear" type="button">
+                  Clear history
+                </button>
+              </div>
+            </div>
+            <div
+              class="history-filters"
+              role="group"
+              aria-label="History display period"
+            >
+              <button
+                class="filter-chip is-active"
+                type="button"
+                data-history-period="today"
+                aria-pressed="true"
+              >
+                Today
+              </button>
+              <button
+                class="filter-chip"
+                type="button"
+                data-history-period="week"
+                aria-pressed="false"
+              >
+                This week
+              </button>
+              <button
+                class="filter-chip"
+                type="button"
+                data-history-period="month"
+                aria-pressed="false"
+              >
+                This month
+              </button>
+              <button
+                class="filter-chip"
+                type="button"
+                data-history-period="year"
+                aria-pressed="false"
+              >
+                This year
+              </button>
+              <button
+                class="filter-chip"
+                type="button"
+                data-history-period="all"
+                aria-pressed="false"
+              >
+                All time
+              </button>
+            </div>
+            <div class="history-tree" id="history-tree" aria-live="polite">
+              <p class="empty-state">Your conversions will appear here.</p>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>✧ TEMPORA</span><span>MEASURE WITH INTENTION</span
+        ><span id="footer-year">2026</span>
+      </footer>
+    </div>
+
+    <dialog
+      class="settings-dialog glass-panel"
+      id="settings-dialog"
+      aria-labelledby="settings-title"
+    >
+      <form method="dialog" class="dialog-heading">
+        <div>
+          <p class="panel-kicker">PREFERENCES</p>
+          <h2 id="settings-title">System settings</h2>
+        </div>
+        <button class="icon-button" value="close" aria-label="Close settings">
+          ×
+        </button>
+      </form>
+      <div class="settings-content">
+        <section
+          class="settings-group"
+          aria-labelledby="settings-display-title"
+        >
+          <h3 id="settings-display-title">Display</h3>
+          <label class="setting-row" for="setting-precision"
+            ><span>Decimal precision</span
+            ><select id="setting-precision">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+            </select></label
+          >
+          <label class="setting-row" for="setting-motion"
+            ><span>Reduced motion</span
+            ><input id="setting-motion" type="checkbox"
+          /></label>
+        </section>
+        <section class="settings-group" aria-labelledby="settings-sound-title">
+          <h3 id="settings-sound-title">Sound</h3>
+          <label class="setting-row" for="setting-sound"
+            ><span>Interface effects</span
+            ><input id="setting-sound" type="checkbox"
+          /></label>
+        </section>
+        <section
+          class="settings-group"
+          aria-labelledby="settings-keyboard-title"
+        >
+          <h3 id="settings-keyboard-title">Keyboard shortcuts</h3>
+          <dl class="shortcut-list">
+            <div>
+              <dt><kbd>S</kbd></dt>
+              <dd>Swap units</dd>
+            </div>
+            <div>
+              <dt><kbd>R</kbd></dt>
+              <dd>Reset temperature</dd>
+            </div>
+            <div>
+              <dt><kbd>H</kbd></dt>
+              <dd>Open history</dd>
+            </div>
+            <div>
+              <dt><kbd>C</kbd></dt>
+              <dd>Copy results</dd>
+            </div>
+            <div>
+              <dt><kbd>Esc</kbd></dt>
+              <dd>Close panel</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+    </dialog>
+
+    <div
+      class="toast-region"
+      id="toast-region"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+    <noscript
+      ><p class="noscript-notice">
+        TEMPORA needs JavaScript enabled to perform temperature conversions.
+      </p></noscript
+    >
+  </body>
+</html>

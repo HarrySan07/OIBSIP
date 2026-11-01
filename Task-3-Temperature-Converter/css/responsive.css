@@ -1,0 +1,607 @@
+/* TEMPORA — responsive layout layer
+   Desktop-first fluid layouts, with careful tablet and compact-screen adaptations. */
+
+/* Wide laptops: give the three-part header more room without changing the visual hierarchy. */
+@media (max-width: 1180px) {
+  .app-shell {
+    width: min(100% - 48px, 1120px);
+  }
+
+  .topbar {
+    grid-template-columns: minmax(190px, 1fr) auto;
+    gap: 14px;
+  }
+
+  .primary-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .topbar__actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .converter-layout {
+    grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1.08fr);
+    gap: 11px;
+  }
+
+  .input-panel,
+  .results-panel,
+  .presets-panel,
+  .formula-panel,
+  .compare-panel,
+  .history-panel {
+    padding: 22px;
+  }
+}
+
+/* Tablets and narrow laptops: stack the main converter to preserve readable controls. */
+@media (max-width: 960px) {
+  .app-shell {
+    width: min(100% - 40px, 820px);
+    padding-top: 20px;
+  }
+
+  main {
+    padding-top: 42px;
+  }
+
+  .topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 12px 16px;
+  }
+
+  .primary-nav {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .nav-link {
+    flex: 1 1 0;
+  }
+
+  .converter-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .input-panel,
+  .results-panel {
+    min-height: 0;
+  }
+
+  .swap-column {
+    flex-direction: row;
+    gap: 10px;
+    min-height: 42px;
+  }
+
+  .swap-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lower-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .preset-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .gauge-section {
+    margin-top: 54px;
+    margin-bottom: 38px;
+  }
+
+  .compare-panel,
+  .history-panel {
+    width: 100%;
+  }
+}
+
+/* Compact tablets and large phones. */
+@media (max-width: 680px) {
+  .app-shell {
+    width: calc(100% - 30px);
+    padding-top: 14px;
+  }
+
+  .topbar {
+    min-height: 0;
+    gap: 12px 8px;
+    padding: 11px 12px;
+    border-radius: 16px;
+  }
+
+  .brand {
+    grid-template-columns: 28px auto;
+    column-gap: 8px;
+  }
+
+  .brand__sigil {
+    width: 27px;
+    height: 27px;
+    font-size: 15px;
+  }
+
+  .brand__wordmark {
+    font-size: 13px;
+    letter-spacing: 0.17em;
+  }
+
+  .brand__caption {
+    max-width: 190px;
+    overflow: hidden;
+    font-size: 7px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .topbar__actions {
+    gap: 6px;
+  }
+
+  .icon-button,
+  .glass-control {
+    width: 36px;
+    height: 36px;
+  }
+
+  .primary-nav {
+    gap: 3px;
+    padding: 4px;
+    border-radius: 10px;
+  }
+
+  .nav-link {
+    min-height: 36px;
+    gap: 5px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .nav-link__icon {
+    font-size: 13px;
+  }
+
+  main {
+    padding-top: 34px;
+  }
+
+  .page-heading {
+    margin-bottom: 27px;
+  }
+
+  .page-heading--compact {
+    margin-bottom: 24px;
+  }
+
+  .page-heading h1 {
+    font-size: clamp(31px, 8vw, 43px);
+  }
+
+  .page-heading__description {
+    max-width: 440px;
+    margin-inline: auto;
+    font-size: 11px;
+  }
+
+  .input-panel,
+  .results-panel,
+  .presets-panel,
+  .formula-panel,
+  .compare-panel,
+  .history-panel {
+    padding: 19px;
+    border-radius: 20px;
+  }
+
+  .panel-heading {
+    gap: 11px;
+    margin-bottom: 20px;
+  }
+
+  .panel-heading h2,
+  .gauge-heading h2 {
+    font-size: 16px;
+  }
+
+  .temperature-field {
+    min-height: 61px;
+  }
+
+  .temperature-field input {
+    padding-inline: 12px;
+    font-size: clamp(25px, 7vw, 32px);
+  }
+
+  .temperature-field select {
+    min-width: 66px;
+    padding-inline: 10px;
+  }
+
+  .slider-block {
+    margin-top: 23px;
+  }
+
+  .input-panel__footer {
+    align-items: flex-start;
+  }
+
+  .result-grid {
+    gap: 9px;
+  }
+
+  .result-card {
+    min-height: 124px;
+    padding: 13px 12px 11px;
+  }
+
+  .result-card__value {
+    margin-top: 14px;
+    font-size: clamp(19px, 5vw, 25px);
+  }
+
+  .result-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .gauge-section {
+    margin: 43px auto 31px;
+  }
+
+  .gauge-stage {
+    width: min(100%, 500px);
+  }
+
+  .gauge-readout {
+    right: 8%;
+    bottom: 7%;
+    left: 8%;
+    min-height: 104px;
+    padding: 0 8px 10px;
+  }
+
+  .gauge-readout strong {
+    font-size: clamp(25px, 7vw, 34px);
+  }
+
+  .gauge-readout__note {
+    max-width: 235px;
+    font-size: 8px;
+  }
+
+  .gauge-scale {
+    width: min(100%, 390px);
+    gap: 8px;
+    font-size: 7px;
+    letter-spacing: 0.055em;
+  }
+
+  .lower-grid {
+    gap: 12px;
+  }
+
+  .preset-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .preset-card {
+    min-height: 82px;
+    margin-top: 8px;
+  }
+
+  .formula-row {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .compare-panel .panel-heading,
+  .history-panel .panel-heading {
+    align-items: flex-start;
+  }
+
+  .history-actions {
+    justify-content: flex-start;
+  }
+
+  .history-filters {
+    gap: 6px;
+  }
+
+  .filter-chip {
+    min-height: 30px;
+    padding-inline: 10px;
+    font-size: 8px;
+  }
+
+  .history-record {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 7px 10px;
+  }
+
+  .history-record__conversion {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    overflow-wrap: anywhere;
+  }
+
+  .history-record__actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .history-nested {
+    margin-left: 7px;
+    padding-left: 8px;
+  }
+
+  .app-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 15px;
+    margin-top: 34px;
+    padding-top: 14px;
+    text-align: center;
+    font-size: 7px;
+  }
+
+  .toast-region {
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Narrow phones. Keep the interface tactile and prevent labels or controls from colliding. */
+@media (max-width: 420px) {
+  .app-shell {
+    width: calc(100% - 22px);
+  }
+
+  .topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 10px;
+  }
+
+  .brand__caption {
+    max-width: 145px;
+    letter-spacing: 0.08em;
+  }
+
+  .primary-nav {
+    justify-content: stretch;
+  }
+
+  .nav-link {
+    flex-direction: column;
+    min-width: 0;
+    min-height: 48px;
+    gap: 2px;
+    padding: 5px 4px;
+    font-size: 8px;
+    line-height: 1.2;
+  }
+
+  .nav-link__icon {
+    font-size: 15px;
+  }
+
+  .input-panel,
+  .results-panel,
+  .presets-panel,
+  .formula-panel,
+  .compare-panel,
+  .history-panel {
+    padding: 16px;
+    border-radius: 17px;
+  }
+
+  .panel-heading {
+    align-items: center;
+  }
+
+  .panel-heading .panel-kicker {
+    font-size: 7px;
+  }
+
+  .panel-heading h2 {
+    font-size: 15px;
+  }
+
+  .panel-mark {
+    width: 29px;
+    height: 29px;
+  }
+
+  .temperature-field {
+    min-height: 57px;
+  }
+
+  .temperature-field input {
+    padding-inline: 10px;
+    font-size: 25px;
+  }
+
+  .temperature-field select {
+    min-width: 61px;
+    padding-inline: 7px;
+    font-size: 13px;
+  }
+
+  .result-grid {
+    gap: 7px;
+  }
+
+  .result-card {
+    min-height: 116px;
+    padding: 11px 9px;
+  }
+
+  .result-card__unit {
+    font-size: 7px;
+  }
+
+  .result-card__value {
+    font-size: clamp(17px, 5.2vw, 21px);
+  }
+
+  .copy-button {
+    padding: 4px 6px;
+    font-size: 8px;
+  }
+
+  .result-toolbar {
+    gap: 7px;
+  }
+
+  .result-toolbar label {
+    flex-basis: 100%;
+  }
+
+  .gauge-section {
+    margin-top: 35px;
+    margin-bottom: 27px;
+  }
+
+  .gauge-heading h2 {
+    font-size: 16px;
+  }
+
+  .gauge-readout {
+    bottom: 5%;
+    min-height: 92px;
+    padding-bottom: 8px;
+  }
+
+  .gauge-readout__eyebrow,
+  .gauge-readout__condition {
+    font-size: 7px;
+  }
+
+  .gauge-readout strong {
+    font-size: clamp(22px, 7vw, 29px);
+  }
+
+  .gauge-readout__note {
+    max-width: 195px;
+    font-size: 7px;
+  }
+
+  .gauge-scale {
+    gap: 4px;
+    font-size: 6px;
+    letter-spacing: 0.025em;
+  }
+
+  .preset-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .preset-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .compare-panel .panel-heading,
+  .history-panel .panel-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .compare-panel .panel-heading > .primary-button {
+    align-self: flex-start;
+  }
+
+  .history-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .history-actions button {
+    padding-inline: 8px;
+    font-size: 8px;
+  }
+
+  .history-group__summary {
+    align-items: flex-start;
+    gap: 6px;
+    padding: 11px;
+  }
+
+  .history-group__title {
+    gap: 7px;
+    font-size: 10px;
+  }
+
+  .history-group__meta {
+    font-size: 8px;
+  }
+
+  .history-group__content {
+    padding-inline: 8px;
+  }
+
+  .dialog-heading,
+  .settings-content {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+}
+
+/* Very short landscape screens: avoid oversized vertical spacing around the gauge. */
+@media (max-height: 560px) and (orientation: landscape) {
+  .app-shell {
+    padding-top: 10px;
+  }
+
+  main {
+    padding-top: 25px;
+  }
+
+  .page-heading {
+    margin-bottom: 20px;
+  }
+
+  .gauge-section {
+    margin-top: 30px;
+    margin-bottom: 25px;
+  }
+
+  .gauge-stage {
+    width: min(70vw, 400px);
+  }
+}
+
+/* Improve touch operation without removing clear focus states for keyboard users. */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link,
+  .icon-button,
+  .glass-control,
+  .primary-button,
+  .secondary-button,
+  .danger-button,
+  .preset-card,
+  .filter-chip {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-link,
+  .icon-button,
+  .glass-control,
+  .primary-button,
+  .secondary-button,
+  .danger-button,
+  .filter-chip {
+    min-height: 40px;
+  }
+
+  .preset-card {
+    min-height: 76px;
+  }
+}
