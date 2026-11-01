@@ -31,7 +31,6 @@ A monochrome Gothic-inspired editorial landing page exploring psychology, philos
 - **Project documentation:** [Task 1 README](./Task-1-Landing-Page/README.md)
 
 **Highlights**
-
 - Monochrome Gothic editorial visual direction.
 - Responsive page structure and section navigation.
 - Conceptual image sections about identity, perception, morality, and existence.
@@ -51,7 +50,6 @@ A personal portfolio presenting profile information, mechanical-engineering inte
 - **Project documentation:** [Task 2 README](./Task-2-Portfolio/README.md)
 
 **Highlights**
-
 - Personal profile and professional introduction.
 - Technical skills and engineering interests.
 - Project and internship information.
@@ -65,12 +63,11 @@ A personal portfolio presenting profile information, mechanical-engineering inte
 
 **TEMPORA** is an advanced temperature-conversion experience with a dark Gothic atmosphere, translucent liquid-glass panels, dynamic motion, and a central semicircular gauge. The gauge uses bottom-up animated black smoke to represent the selected temperature.
 
-- **Project:** [Open TEMPORA](./Task-3-Temperature-Converter/TEMPORA/)
-- **Project documentation:** [TEMPORA README](./Task-3-Temperature-Converter/TEMPORA/README.md)
-- **GitHub Pages route:** `https://harrysan07.github.io/OIBSIP/Task-3-Temperature-Converter/TEMPORA/` (available after the updated files are pushed and Pages finishes deploying)
+- **Project:** [Open TEMPORA](./Task-3-Temperature-Converter/)
+- **Project documentation:** [TEMPORA README](./Task-3-Temperature-Converter/README.md)
+- **GitHub Pages route:** `https://harrysan07.github.io/OIBSIP/Task-3-Temperature-Converter/` (available after the updated files are pushed and Pages finishes deploying)
 
 **Highlights**
-
 - Convert between Celsius, Fahrenheit, and Kelvin in all six directions.
 - Live conversion, unit swapping, input validation, and absolute-zero checks.
 - Adjustable decimal precision and copyable results.
@@ -91,7 +88,7 @@ TEMPORA is a static project. It does not require a server-side application, acco
 
 ## Repository structure
 
-The Task 3 ZIP contains an inner `TEMPORA/` directory. Preserve that directory when extracting it into `Task-3-Temperature-Converter/` so the project hub link resolves correctly.
+The Task 3 files are stored directly in `Task-3-Temperature-Converter/`. The project entry point is `index.html` in that directory.
 
 ```text
 OIBSIP/
@@ -112,23 +109,22 @@ OIBSIP/
 │   └── README.md
 │
 └── Task-3-Temperature-Converter/
-    └── TEMPORA/
-        ├── index.html
-        ├── README.md
-        ├── assets/
-        │   └── icons/
-        │       └── favicon.svg
-        ├── css/
-        │   ├── style.css
-        │   ├── animations.css
-        │   └── responsive.css
-        └── js/
-            ├── app.js
-            ├── converter.js
-            ├── interactions.js
-            ├── history.js
-            ├── comparison.js
-            └── sound.js
+    ├── index.html
+    ├── README.md
+    ├── assets/
+    │   └── icons/
+    │       └── favicon.svg
+    ├── css/
+    │   ├── style.css
+    │   ├── animations.css
+    │   └── responsive.css
+    └── js/
+        ├── app.js
+        ├── converter.js
+        ├── interactions.js
+        ├── history.js
+        ├── comparison.js
+        └── sound.js
 ```
 
 ## Open the project hub
@@ -146,7 +142,7 @@ Visit **[OIBSIP Project Hub](https://harrysan07.github.io/OIBSIP/)** to access t
 2. Open the directory for the task you want to explore.
 3. Open that project's `index.html` in a modern browser. A simple local static server or the VS Code Live Server extension is recommended for development.
 
-The projects do not require a package installation or compilation step. TEMPORA can be opened from `Task-3-Temperature-Converter/TEMPORA/index.html` after extraction.
+The projects do not require a package installation or compilation step. TEMPORA can be opened from `Task-3-Temperature-Converter/index.html` after extraction.
 
 ## Project status and verification
 
@@ -154,13 +150,13 @@ All three task folders and their project documentation have been assembled in th
 
 ## Internship information
 
-| Detail       | Information                                    |
-| ------------ | ---------------------------------------------- |
-| Organization | Oasis Infobyte                                 |
-| Track        | Web Development &amp; Designing                |
-| Level        | Level 1                                        |
-| Repository   | [OIBSIP](https://github.com/HarrySan07/OIBSIP) |
-| Assignments  | Landing Page, Portfolio, Temperature Converter |
+| Detail | Information |
+|---|---|
+| Organization | Oasis Infobyte |
+| Track | Web Development &amp; Designing |
+| Level | Level 1 |
+| Repository | [OIBSIP](https://github.com/HarrySan07/OIBSIP) |
+| Assignments | Landing Page, Portfolio, Temperature Converter |
 
 ## Author
 
